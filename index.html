@@ -1,0 +1,74 @@
+<html>
+<head>
+    <title>Call Log</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+
+    <div class="container shadow-lg p-3 mb-5 bg-white rounded">
+        <!-- Content here -->
+        <form name="google-sheet" method="post" autocomplete="off" >
+            <h2 style="text-align:center ;font-size:24px">Zara Zaman Technology Ltd.</h2>
+            <div class="form-row ">
+                <div class="form-group col-md-6">
+                    <label for="inputName">Assign Engineer</label>
+                    <input type="text" class="form-control" id="inputName" placeholder="Engineer Name" name="Engineer-Name" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputProblem">Problem Type</label>
+                    <input class="form-control" id="inputProblem" placeholder="Enter Problem Type" name="Problem-Type" required>
+                </div>
+            </div>
+            <div class="form-group col-md-4 ">
+                <label for="inputProduct">Product</label>
+                <select id="inputProduct" class="form-control" name="Product-Name">
+                    <option selected>Choose...</option>
+                    <option>H22NL</option>
+                    <option>H22VL</option>
+                    <option>H68NL</option>
+                    <option>CDM</option>
+                    <option>STM</option>
+                    <option>Shoter</option>
+                </select>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="inputBank">Bank Name</label>
+                <select id="inputBank" class="form-control" name="Bank-Name">
+                    <option selected>Choose...</option>
+                    <option>DBL</option>
+                    <option>SEBL</option>
+                    <option>EBL</option>
+                    <option>MTB</option>
+                    <option>DBBL</option>
+                    <option>UCBL</option>
+                    <option>SJIBL</option>
+                    <option>TBL</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="inputLocation">Location</label>
+                <input type="text" class="form-control" id="inputLocation" placeholder="Call Location" required name="Location">
+            </div>
+
+            <button type="submit" name="submit" class="btn btn-primary" >Submit</button>
+        </form>
+    </div>
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwrBor8Sht5-T7Rt-X9lHc-K6Bhdg8DoohYEqgXpc520HgU2Wex/exec'
+        const form = document.forms['google-sheet']
+
+        form.addEventListener('submit', e => {
+            e.preventDefault()
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                .then(response => alert("Thank You Dear Engineer"))
+                .catch(error => console.error('Error!', error.message))
+        })
+    </script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  
+</body>
+</html>
